@@ -31,7 +31,7 @@ and an AI assistant (OpenCode) — all on a fork that stays **syncable with upst
 
 | Area | What you get | Where |
 | :--- | :--- | :--- |
-| **Python / ML** | `pyright` LSP, `ruff` lint+format, debugpy debugging, type checking | `lsp.lua`, `format.lua`, `debug.lua` |
+| **Python / ML** | `basedpyright` LSP (Pylance features), `ruff` lint+format, debugpy debugging, type checking | `lsp.lua`, `format.lua`, `debug.lua` |
 | **Notebooks** | edit `.ipynb` as plain text (`jupytext.nvim`) + run cells in a live Jupyter kernel (`molten-nvim`) | `notebooks.lua` |
 | **TypeScript/JS** | `ts_ls` LSP, inlay hints, `prettierd` formatting | `lsp.lua`, `format.lua` |
 | **Rust** | `rust_analyzer` with clippy + inlay hints | `lsp.lua` |
@@ -113,7 +113,8 @@ toolchain automatically. Then run `:checkhealth` to see what's ready.
 
 ### Python / ML (`<leader>` + LSP defaults)
 
-- `pyright` — completions, type checking (`basic`), navigation, refactors.
+- `basedpyright` — pyright fork with Pylance-ported features: completions,
+  inlay hints, semantic tokens, type checking (`basic`), navigation, refactors.
 - `ruff` — linting (nvim-lint) and formatting (`ruff_format`) on save via conform.
 - `debugpy` — full debugging via `nvim-dap` (see [Keymaps](#keymaps)).
 
@@ -122,7 +123,7 @@ toolchain automatically. Then run `:checkhealth` to see what's ready.
 Editing an `.ipynb`:
 
 - `jupytext.nvim` transparently opens notebooks as **`py:percent`** text — so it's
-  readable, diffable, and `pyright`/`ruff` work inside notebook code.
+  readable, diffable, and `basedpyright`/`ruff` work inside notebook code.
 - `molten-nvim` runs cells against a live Jupyter kernel. Output appears as
   virtual text or in a floating window; plots/images/LateX are supported.
 - `]n` / `[n` jump between cells.
@@ -214,7 +215,7 @@ init.lua                      <- upstream, near-untouched (Nerd Font flag + load
 lua/custom/plugins/
   init.lua                    <- explicit, dependency-aware loader
   config.lua                  <- PATH, Mason toolchain, which-key groups
-  lsp.lua                     <- pyright, ts_ls, rust_analyzer, clangd, yamlls, taplo
+  lsp.lua                     <- basedpyright, ts_ls, rust_analyzer, clangd, yamlls, taplo
   treesitter.lua              <- extra parsers
   format.lua                  <- conform override + nvim-lint
   notebooks.lua               <- jupytext.nvim + molten-nvim

@@ -1,7 +1,7 @@
 -- Quality-of-life plugins: oil.nvim, undotree, flash.nvim.
 
 -- [[ oil.nvim ]] -- file explorer as a normal buffer
-vim.pack.add { 'https://github.com/stevearc/oil.nvim' }
+vim.pack.add { 'https://github.com/stevearc/oil.nvim', version = vim.version.range '2.*' }
 require('oil').setup {
   default_file_explorer = true, -- Use oil in netrw's place (opens on `-`)
   view_options = {
@@ -23,7 +23,7 @@ vim.pack.add { 'https://github.com/mbbill/undotree' }
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = '[U]ndotree toggle' })
 
 -- [[ flash.nvim ]] -- label-based search/jump
-vim.pack.add { 'https://github.com/folke/flash.nvim' }
+vim.pack.add { 'https://github.com/folke/flash.nvim', version = vim.version.range '2.*' }
 require('flash').setup {}
 
 vim.keymap.set('n', 's', function() require('flash').jump() end, { desc = 'Flash jump' })

@@ -9,7 +9,7 @@
 vim.pack.add {
   {
     src = 'https://github.com/nickjvandyke/opencode.nvim',
-    version = vim.version.range '*',
+    version = vim.version.range '1.*',
   },
 }
 

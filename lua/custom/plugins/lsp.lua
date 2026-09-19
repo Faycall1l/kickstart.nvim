@@ -10,7 +10,10 @@
 ---@type table<string, vim.lsp.Config>
 local aie_servers = {
   -- Python / ML
-  pyright = {
+  -- basedpyright: community-maintained pyright fork with Pylance-ported
+  -- features (inlay hints, semantic tokens, docstring completion payload)
+  -- and stricter defaults. Replaces stock pyright (SOTA for Neovim).
+  basedpyright = {
     settings = {
       python = {
         analysis = {

@@ -4,11 +4,11 @@
 -- this enables a full debugger for the Python/ML stack out of the box.
 
 vim.pack.add {
-  'https://github.com/mfussenegger/nvim-dap',
-  'https://github.com/rcarriga/nvim-dap-ui',
-  'https://github.com/nvim-neotest/nvim-nio',
-  'https://github.com/jay-babu/mason-nvim-dap.nvim',
-  'https://github.com/mfussenegger/nvim-dap-python',
+  { 'https://github.com/mfussenegger/nvim-dap', version = vim.version.range '0.10.*' },
+  { 'https://github.com/rcarriga/nvim-dap-ui', version = vim.version.range '4.*' },
+  { 'https://github.com/nvim-neotest/nvim-nio', version = vim.version.range '1.*' },
+  { 'https://github.com/jay-babu/mason-nvim-dap.nvim', version = vim.version.range '2.*' },
+  { 'https://github.com/mfussenegger/nvim-dap-python' },
 }
 
 local dap = require 'dap'

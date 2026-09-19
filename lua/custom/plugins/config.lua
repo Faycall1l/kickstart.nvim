@@ -21,7 +21,7 @@ local ensure_installed = {
   'stylua', -- Lua formatter (upstream default)
 
   -- Python / ML stack
-  'pyright', -- Python LSP
+  'basedpyright', -- Python LSP (pyright fork with Pylance features)
   'ruff', -- Python linter/formatter (ruff + ruff_format + ruff_check)
   'debugpy', -- Python debug adapter (used by nvim-dap)
 

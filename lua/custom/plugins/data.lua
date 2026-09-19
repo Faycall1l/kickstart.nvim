@@ -3,7 +3,7 @@
 -- Auto-detects delimiters and headers, adds Excel-like navigation and text
 -- objects, plus sticky headers/columns. Requires Neovim >= 0.10.
 
-vim.pack.add { 'https://github.com/hat0uma/csvview.nvim' }
+vim.pack.add { 'https://github.com/hat0uma/csvview.nvim', version = vim.version.range '1.*' }
 
 require('csvview').setup {
   parser = {

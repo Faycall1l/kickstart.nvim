@@ -9,9 +9,7 @@
 
 -- 1. PATH: Mason installs binaries under `stdpath('data')/mason/bin`.
 local mason_bin = vim.fs.joinpath(vim.fn.stdpath 'data', 'mason', 'bin')
-if not vim.env.PATH:find(mason_bin, 1, true) then
-  vim.env.PATH = mason_bin .. ':' .. vim.env.PATH
-end
+if not vim.env.PATH:find(mason_bin, 1, true) then vim.env.PATH = mason_bin .. ':' .. vim.env.PATH end
 
 -- 2. Full toolchain to auto-install via Mason.
 --   Keeps the upstream defaults (`lua-language-server`, `stylua`) and adds the

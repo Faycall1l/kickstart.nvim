@@ -29,7 +29,5 @@ local csv_augroup = vim.api.nvim_create_augroup('aie-csvview', { clear = true })
 vim.api.nvim_create_autocmd({ 'FileType', 'BufReadPost' }, {
   group = csv_augroup,
   pattern = { '*.csv', '*.tsv' },
-  callback = function(ev)
-    require('csvview').enable(ev.buf)
-  end,
+  callback = function(ev) require('csvview').enable(ev.buf) end,
 })

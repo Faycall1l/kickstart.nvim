@@ -33,7 +33,5 @@ local modules = {
 
 for _, module in ipairs(modules) do
   local ok, err = pcall(require, 'custom.plugins.' .. module)
-  if not ok then
-    vim.notify(('custom.plugins: failed to load %q: %s'):format(module, err), vim.log.levels.ERROR)
-  end
+  if not ok then vim.notify(('custom.plugins: failed to load %q: %s'):format(module, err), vim.log.levels.ERROR) end
 end

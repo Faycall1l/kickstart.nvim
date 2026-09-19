@@ -25,11 +25,11 @@ vim.g.opencode_opts = {
 -- [A]I Assistant keymaps
 vim.keymap.set({ 'n', 'x' }, '<leader>aa', function() require('opencode').ask() end, { desc = '[A]: [a]sk OpenCode' })
 vim.keymap.set({ 'n', 'x' }, '<leader>as', function() require('opencode').select() end, { desc = '[A]: [s]elect prompt/command' })
-vim.keymap.set({ 'n', 'x' }, '<leader>ae', function() require('opencode').prompt('explain @this') end, { desc = '[A]: [e]xplain' })
-vim.keymap.set({ 'n', 'x' }, '<leader>ar', function() require('opencode').prompt('review @this') end, { desc = '[A]: [r]eview' })
-vim.keymap.set({ 'n', 'x' }, '<leader>af', function() require('opencode').prompt('fix @diagnostics') end, { desc = '[A]: [f]ix diagnostics' })
-vim.keymap.set({ 'n', 'x' }, '<leader>at', function() require('opencode').prompt('test @this') end, { desc = '[A]: add [t]ests' })
-vim.keymap.set({ 'n', 'x' }, '<leader>ad', function() require('opencode').prompt('document @this') end, { desc = '[A]: [d]ocument' })
+vim.keymap.set({ 'n', 'x' }, '<leader>ae', function() require('opencode').prompt 'explain @this' end, { desc = '[A]: [e]xplain' })
+vim.keymap.set({ 'n', 'x' }, '<leader>ar', function() require('opencode').prompt 'review @this' end, { desc = '[A]: [r]eview' })
+vim.keymap.set({ 'n', 'x' }, '<leader>af', function() require('opencode').prompt 'fix @diagnostics' end, { desc = '[A]: [f]ix diagnostics' })
+vim.keymap.set({ 'n', 'x' }, '<leader>at', function() require('opencode').prompt 'test @this' end, { desc = '[A]: add [t]ests' })
+vim.keymap.set({ 'n', 'x' }, '<leader>ad', function() require('opencode').prompt 'document @this' end, { desc = '[A]: [d]ocument' })
 
 -- Session management
 vim.keymap.set('n', '<leader>an', function() require('opencode').command 'session.new' end, { desc = '[A]: [n]ew session' })

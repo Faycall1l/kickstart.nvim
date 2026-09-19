@@ -59,7 +59,7 @@ local check_aie_toolchain = function()
   if venv and venv ~= '' then
     vim.health.ok(string.format("Active virtualenv detected: '%s' (python/debug/notebooks will use it)", venv))
   else
-    vim.health.info "No VIRTUAL_ENV active — system python will be used for notebook/debug tooling"
+    vim.health.info 'No VIRTUAL_ENV active — system python will be used for notebook/debug tooling'
   end
 end
 

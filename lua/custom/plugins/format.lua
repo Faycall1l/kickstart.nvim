@@ -22,9 +22,7 @@ require('conform').setup {
       sh = true,
       zsh = true,
     }
-    if enabled_filetypes[vim.bo[bufnr].filetype] then
-      return { timeout_ms = 500 }
-    end
+    if enabled_filetypes[vim.bo[bufnr].filetype] then return { timeout_ms = 500 } end
   end,
   default_format_opts = {
     lsp_format = 'fallback',

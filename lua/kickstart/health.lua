@@ -33,6 +33,36 @@ local check_external_reqs = function()
   return true
 end
 
+-- AI Engineering toolchain checks (see README for what each tool powers)
+local check_aie_toolchain = function()
+  local checks = {
+    { exe = 'python3', warn = 'Python LSP/debugger fall back to system python; notebooks (molten) need python3 with jupyter + ipykernel' },
+    { exe = 'node', warn = 'TypeScript/JS support and prettierd need node on PATH' },
+    { exe = 'rust-analyzer', warn = 'Rust LSP not found on PATH; it will be installed via Mason on launch' },
+    { exe = 'jupyter', warn = 'Molten notebook cells need jupyter + ipykernel (pip install jupyter ipykernel)' },
+    { exe = 'jupytext', warn = 'Editing .ipynb as text needs the jupytext CLI (pip install jupytext)' },
+    { exe = 'opencode', warn = 'The [A]I Assistant (opencode.nvim) needs the opencode CLI on PATH (see opencode.ai)' },
+  }
+
+  for i, check in ipairs(checks) do
+    if vim.fn.executable(check.exe) == 1 then
+      vim.health.ok(string.format("Found executable: '%s'", check.exe))
+    elseif check.warn then
+      vim.health.warn(string.format("Could not find executable: '%s' — %s", check.exe, check.warn))
+    else
+      vim.health.warn(string.format("Could not find executable: '%s'", check.exe))
+    end
+  end
+
+  -- Active virtualenv hint for Python debugging / notebook workflow
+  local venv = vim.env.VIRTUAL_ENV
+  if venv and venv ~= '' then
+    vim.health.ok(string.format("Active virtualenv detected: '%s' (python/debug/notebooks will use it)", venv))
+  else
+    vim.health.info "No VIRTUAL_ENV active — system python will be used for notebook/debug tooling"
+  end
+end
+
 return {
   check = function()
     vim.health.start 'kickstart.nvim'
@@ -48,5 +78,6 @@ return {
 
     check_version()
     check_external_reqs()
+    check_aie_toolchain()
   end,
 }

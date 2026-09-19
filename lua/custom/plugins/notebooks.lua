@@ -10,13 +10,13 @@
 -- (and the `jupytext` CLI for jupytext.nvim).
 
 -- [[ jupytext.nvim ]]
-vim.pack.add { 'https://github.com/goerz/jupytext.nvim', version = vim.version.range '0.2' }
+vim.pack.add { { src = 'https://github.com/goerz/jupytext.nvim', version = vim.version.range '0.2' } }
 require('jupytext').setup {
-  style = 'percent', -- py:percent, round-trips cleanly with Jupyter
+  format = 'py:percent', -- py:percent, round-trips cleanly with Jupyter
 }
 
 -- [[ molten-nvim ]] (requires nvim >= 0.9.4, jupyter + ipykernel)
-vim.pack.add { 'https://github.com/benlubas/molten-nvim', version = vim.version.range '1.*' }
+vim.pack.add { { src = 'https://github.com/benlubas/molten-nvim', version = vim.version.range '1.*' } }
 
 vim.g.molten_output_win_max_height = 20
 vim.g.molten_output_win_max_width = 78

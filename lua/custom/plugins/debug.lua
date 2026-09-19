@@ -4,11 +4,11 @@
 -- this enables a full debugger for the Python/ML stack out of the box.
 
 vim.pack.add {
-  { 'https://github.com/mfussenegger/nvim-dap', version = vim.version.range '0.10.*' },
-  { 'https://github.com/rcarriga/nvim-dap-ui', version = vim.version.range '4.*' },
-  { 'https://github.com/nvim-neotest/nvim-nio', version = vim.version.range '1.*' },
-  { 'https://github.com/jay-babu/mason-nvim-dap.nvim', version = vim.version.range '2.*' },
-  { 'https://github.com/mfussenegger/nvim-dap-python' },
+  { src = 'https://github.com/mfussenegger/nvim-dap', version = vim.version.range '0.10.*' },
+  { src = 'https://github.com/rcarriga/nvim-dap-ui', version = vim.version.range '4.*' },
+  { src = 'https://github.com/nvim-neotest/nvim-nio', version = vim.version.range '1.*' },
+  { src = 'https://github.com/jay-babu/mason-nvim-dap.nvim', version = vim.version.range '2.*' },
+  { src = 'https://github.com/mfussenegger/nvim-dap-python' },
 }
 
 local dap = require 'dap'
@@ -57,6 +57,6 @@ dap.listeners.before.event_exited['dapui_config'] = dapui.close
 -- Python adapter using the *active venv* if present, else `python`.
 -- debugpy (installed via mason-nvim-dap `ensure_installed`) is resolved from PATH.
 local default_python = vim.env.VIRTUAL_ENV and (vim.env.VIRTUAL_ENV .. '/bin/python') or 'python'
-require('nvim-dap-python').setup(default_python, {
+require('dap-python').setup(default_python, {
   test_runner = 'pytest',
 })

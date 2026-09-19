@@ -1,14 +1,39 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
+-- Ordered loader for the AI Engineering plugin layer.
 --
--- See the kickstart.nvim README for more information
+-- Replaces the upstream auto-loader (`vim.fs.dir()`, order unspecified) with an
+-- explicit, dependency-aware order. Each module below carries its own
+-- `vim.pack.add()` + `setup()` calls, so this copies the upstream pattern of
+-- keeping plugins self-contained per file.
+--
+-- If a module is missing (e.g. work-in-progress on a feature branch), it is
+-- skipped with an error notification instead of breaking the whole config.
 
--- Iterate over all Lua files in the plugins directory and load them.
--- `vim.fs.dir()` iteration order is unspecified and must not be relied upon.
-local plugins_dir = vim.fs.joinpath(vim.fn.stdpath 'config', 'lua', 'custom', 'plugins')
-for file_name, type in vim.fs.dir(plugins_dir, { follow = true }) do
-  if (type == 'file' or type == 'link') and file_name:match '%.lua$' and file_name ~= 'init.lua' then
-    local module = file_name:gsub('%.lua$', '')
-    require('custom.plugins.' .. module)
+local modules = {
+  -- Shared settings, PATH, toolchain, which-key groups (must load first)
+  'config',
+  -- Language servers for the AI/engineering stack
+  'lsp',
+  -- Additional treesitter parsers
+  'treesitter',
+  -- Formatting & linting (conform.nvim override + nvim-lint)
+  'format',
+  -- Jupyter notebook workflow (molten-nvim + jupytext.nvim)
+  'notebooks',
+  -- Data files (csvview.nvim)
+  'data',
+  -- Markdown & docs (render-markdown.nvim)
+  'markdown',
+  -- Python debugging (nvim-dap + nvim-dap-python)
+  'debug',
+  -- Quality-of-life (oil.nvim, undotree, flash.nvim)
+  'qol',
+  -- AI assistant (opencode.nvim)
+  'ai',
+}
+
+for _, module in ipairs(modules) do
+  local ok, err = pcall(require, 'custom.plugins.' .. module)
+  if not ok then
+    vim.notify(('custom.plugins: failed to load %q: %s'):format(module, err), vim.log.levels.ERROR)
   end
 end

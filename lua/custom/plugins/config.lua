@@ -41,7 +41,7 @@ local ensure_installed = {
   'shfmt',
 
   -- Markdown linting (used by nvim-lint)
-  'markdownlint-cli',
+  'markdownlint', -- Markdown linting (used by nvim-lint)
 }
 
 ---@diagnostic disable-next-line: missing-fields
